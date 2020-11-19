@@ -75,8 +75,6 @@ option_list <- list(
 
 opt <- parse_args(OptionParser(option_list=option_list))
 
-opt$expr <- as.matrix(data@assays[["RNA"]]@counts)
-
 ## Check for input and output options
 if (is.null(opt$expr)) {
   message("ERROR: Expression matrix missing, please specify with --expr, -e flags.")
