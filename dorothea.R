@@ -80,8 +80,7 @@ option_list <- list(
               help="Integer indicating the number of cores to use (only 1 in Windows-based systems) [default=1]"),
 
   make_option(c("--verbose", "-v"), action="store", default=FALSE, type='logical',
-              help="A logical value indicating whether to display a message about the number of genes used per pathway
-              to compute progeny scores (i.e. number of genes present in the progeny model and in the expression dataset) [default=FALSE]")
+              help="Logical, whether progression messages should be printed in the terminal [default=FALSE]")
 )
 
 opt <- parse_args(OptionParser(option_list=option_list))
