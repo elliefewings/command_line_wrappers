@@ -81,8 +81,11 @@ if (is.null(opt$expr)) {
   stop(parse_args(OptionParser(option_list=option_list), args = c("--help")))
 }
 
+# Load input
+input <- read.table(opt$expr, row.names=1, header=TRUE)
+
 #Run progeny
-out <- progeny(opt$expr, 
+out <- progeny(input, 
                 scale=opt$scale, 
                 organism=opt$organism, 
                 top=opt$top, 

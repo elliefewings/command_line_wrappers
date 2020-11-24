@@ -91,6 +91,9 @@ if (is.null(opt$expr)) {
   stop(parse_args(OptionParser(option_list=option_list), args = c("--help")))
 }
 
+# Load input
+input <- read.table(opt$expr, row.names=1, header=TRUE)
+
 ## Run dorothea
 
 #Set organism
@@ -103,7 +106,7 @@ regulon <- dorothea_regulon_human %>%
   dplyr::filter(confidence %in% c("A","B","C"))
 
 ## We compute Viper Scores 
-out <- run_viper(opt$expr, regulon,
+out <- run_viper(input, regulon,
                   options = list(pleiotropy = opt$pleiotropy,
                                  nes = opt$nes,
                                  method = opt$method,
