@@ -24,26 +24,12 @@
 
 # ============================================================
 
-# Install if required
-if (!requireNamespace("BiocManager", quietly = TRUE)) {
-  install.packages("BiocManager")
-}
-
-if (!require("dorothea", character.only = TRUE, quietly = TRUE)){
-  BiocManager::install("dorothea")
-}
-
-# Load libraries
-libs <- c("optparse", "viper", "dplyr", "magrittr")
-
-for (i in libs) {
-  if (! suppressPackageStartupMessages(suppressWarnings(require(i, character.only = TRUE, quietly = TRUE)))) { 
-    install.packages(i, repos = "https://ftp.fau.de/cran/")
-    if (! suppressPackageStartupMessages(suppressWarnings(require(i, character.only = TRUE, quietly = TRUE)))) {
-      stop(paste("Unable to install package: ", i, ". Please install manually and restart.", sep=""))
-    }
-  }
-}
+## Load libraries
+suppressPackageStartupMessages(suppressWarnings(library(optparse)))
+suppressPackageStartupMessages(suppressWarnings(library(viper)))
+suppressPackageStartupMessages(suppressWarnings(library(dplyr)))
+suppressPackageStartupMessages(suppressWarnings(library(magrittr)))
+suppressPackageStartupMessages(suppressWarnings(library(dorothea)))
 
 ## Get options
 option_list <- list(

@@ -24,26 +24,9 @@
 
 # ============================================================
 
-# Install if required
-if (!requireNamespace("BiocManager", quietly = TRUE)) {
-  install.packages("BiocManager")
-}
-
-if (!require("progeny", character.only = TRUE, quietly = TRUE)){
-  BiocManager::install("progeny")
-}
-
-# Load libraries
-libs <- c("optparse", "progeny")
-
-for (i in libs) {
-  if (! suppressPackageStartupMessages(suppressWarnings(require(i, character.only = TRUE, quietly = TRUE)))) { 
-    install.packages(i, repos = "https://ftp.fau.de/cran/")
-    if (! suppressPackageStartupMessages(suppressWarnings(require(i, character.only = TRUE, quietly = TRUE)))) {
-      stop(paste("Unable to install package: ", i, ". Please install manually and restart.", sep=""))
-    }
-  }
-}
+## Load libraries
+suppressPackageStartupMessages(suppressWarnings(library(optparse)))
+suppressPackageStartupMessages(suppressWarnings(library(progeny)))
 
 ## Get options
 option_list <- list(
@@ -84,8 +67,11 @@ if (is.null(opt$expr)) {
 # Load input
 input <- read.table(opt$expr, row.names=1, header=TRUE)
 
+#Convert to matrix
+input.mx <- as.matrix(input)
+
 #Run progeny
-out <- progeny(input, 
+out <- progeny(input.mx, 
                 scale=opt$scale, 
                 organism=opt$organism, 
                 top=opt$top, 
